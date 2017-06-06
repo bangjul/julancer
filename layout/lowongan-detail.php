@@ -76,9 +76,11 @@
                           <div class="content">
                             Dipost Oleh
                           </div>
-                          <div class="image">
-                            <img src="public/images/client.png">
-                          </div>
+                          
+                            <a class="image" href="?p=profile"> 
+                                <img src="public/images/client.png">
+                                </a>
+                          
                           <div class="content">
                             <i class="user icon"></i>
                             Julio
