@@ -1,4 +1,5 @@
-<div class="register-section">
+<script type="text/javascript" src="js/register.js"></script>
+<div class="register-section" >
         <div class="ui stackable middle aligned center aligned grid" id="top-login-regis">
             <div class="column" id="content-login-regis">
                 <a href="?p=home">
@@ -8,7 +9,7 @@
                 <p class="ui header">Daftar Akun Sekarang</p>
                 <br>
                     
-                           <form class="ui form">
+                           <div class="ui form">
                             <div class="field">
                               <label>Nama Lengkap</label>
                               <input type="text" name="nama-lengkap" placeholder="Nama Lengkap">
@@ -22,11 +23,11 @@
                             <div class="two fields">
                               <div class="field">
                                 <label>Email</label>
-                                <input type="email" placeholder="First Name">
+                                <input type="email" placeholder="Email" id="txtEmail">
                               </div>
                               <div class="field">
                                 <label>Password</label>
-                                <input type="password" placeholder="Middle Name">
+                                <input type="password" placeholder="Password" id="txtPassword">
                               </div>
                             </div>
 
@@ -39,8 +40,8 @@
                                 <label>Dengan klik Daftar, Anda menyetujui Syarat dan Ketentuan yang berlaku</label>
                               
                             </div>
-                            <button class="ui fluid yellow button" type="submit">Daftar</button>
-                          </form>
+                            <button class="ui fluid yellow button" id="btnRegister">Daftar</button>
+                          </div>
                  
                     
 

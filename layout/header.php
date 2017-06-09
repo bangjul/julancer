@@ -1,3 +1,5 @@
+<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+<script type="text/javascript" src="js/header.js"></script>
              <div class="ui fixed borderless menu square">
                 <div class="ui container">
                     <div class="item">
@@ -23,10 +25,13 @@
                                 </div>
                         </a>
                         <div class="item">
-                            <button class="ui yellow button masuk" id="square-button"><i class="grey sign in icon"></i><a  href="?p=login">Masuk</a></button>
+                            <a  href="?p=login"><button class="hidden ui yellow button masuk" id="btnLoginHeader"><i class="grey sign in icon"></i>Masuk</button></a>
                         </div>
                         <div class="item">
-                            <button class="ui basic yellow button daftar" id="square-button"><i class="grey add user icon"></i><a href="?p=register">Daftar</a></button>
+                            <a href="?p=register"><button class="ui basic yellow button daftar" id="btnRegisterHeader"><i class="grey add user icon"></i>Daftar</button></a>
+                        </div>
+                        <div class="item">
+                            <button class="ui basic yellow button daftar" id="btnLogoutHeader" style="display: none"><i class="grey add user icon"></i>Logout</button>
                         </div>
                     </div>
                 </div>

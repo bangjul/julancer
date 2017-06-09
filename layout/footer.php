@@ -1,4 +1,4 @@
-
+<script type="text/javascript" src="js/footer.js"></script>
         <div class="ui inverted vertical segment">
                 <div class="ui center aligned container">
                     <div class="footer-section">
