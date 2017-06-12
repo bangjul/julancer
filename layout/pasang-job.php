@@ -1,3 +1,4 @@
+<br>
 <div class="pasang-job-section">
       <div class="ui stackable middle aligned center aligned grid" id="top-login-regis">
             <div class="column" id="content-pasang-job">
@@ -8,19 +9,18 @@
                 <p class="ui header">Jelaskan Kebutuhan Anda</p>
                 <br>
                     
-                      <form class="ui form">
+                      <form class="ui form" method="post" action="?p=insert_job" enctype = "multipart/form-data">
 
                            <div class="field">
                                 <label>Pilih kategori</label>
-                                <select class="ui fluid dropdown">
+                                <select class="ui fluid dropdown" name="kategori">
                                   <option value="">kategori</option>
-                                      <option value="AK">Akuntansi dan keuangan</option>
-                                      <option value="WD">Website Development</option>
-                                      <option value="CE">CEO Marketing</option>
-                                      <option value="MA">Mobile App</option>
-                                      <option value="DM">Design dan Multimedia</option>
-                                      <option value="DE">Data Entri</option>
-                                      <option value="WT">Writing</option>
+                                      <option value="Website Development">Website Development</option>
+                                      <option value="CEO Marketing">CEO Marketing</option>
+                                      <option value="Mobile App">Mobile App</option>
+                                      <option value="Design dan Multimedia">Design dan Multimedia</option>
+                                      <option value="Data Entri">Data Entri</option>
+                                      <option value="Writing">Writing</option>
                                 </select>
                               </div>
 
@@ -30,10 +30,10 @@
                             </div>
                             <div class="field">
                               <label>Jelaskan Kebutuhan Anda Secara Lengkap</label>
-                              <textarea style="margin-top: 0px; margin-bottom: 0px; height: 176px;"></textarea>
+                              <textarea style="margin-top: 0px; margin-bottom: 0px; height: 176px;" name="deskripsi"></textarea>
                             </div>
 
-                            <button class="ui grey button" type="">upload file</button>
+                            <input class="ui grey" type="file" name="fileToUpload">upload file</input>
                             <br>
                             <a>misal : logo / profile perusahaan</a>
                             
@@ -43,7 +43,7 @@
                               <div class="ui label">
                                 <i class="yellow dollar icon"></i>
                               </div>
-                              <input type="text" placeholder="Budget Saya">
+                              <input type="text" placeholder="Gaji" name="gaji">
                               <div class="ui basic label">.00</div>
                             </div>
                             <br>
@@ -52,11 +52,16 @@
                                 <div class="ui label">
                                   <i class="yellow calendar icon"></i>
                                 </div>
-                                <input type="date">
+                                <input type="date" name="tanggal_berahir">
+                            </div>
+                            <br>
+                            <div class="field">
+                              <label>Link Resmi</label>
+                              <input type="text" name="link" placeholder="http://www.oilancer.com">
                             </div>
                             <br>
 
-                            <button class="ui fluid yellow button" type="submit">Submit Job</button>
+                            <button class="ui fluid yellow button" type="submit" value="submit">Submit Job</button>
                       </form>
                     <br>
                  

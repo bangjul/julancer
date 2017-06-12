@@ -1,3 +1,5 @@
+
+
 <div class="register-section">
         <div class="ui stackable middle aligned center aligned grid" id="top-login-regis">
             <div class="column" id="content-login-regis">
@@ -9,50 +11,59 @@
                 <br>
                     
                            
-                           <form class="ui form">
-                            <div class="field">
-                              <label>Nama Lengkap</label>
-                              <input type="text" name="nama-lengkap" placeholder="Nama Lengkap">
-                            </div>
-                            <div class="field">
-                              <label>Username</label>
-                              <input type="text" name="username" placeholder="Username">
-                            </div>
+                           <form class="ui form" method="post" action="?p=insert_register_client" enctype = "multipart/form-data">
+                                <div class="field">
+                                  <label>Nama Industri</label>
+                                  <input type="text" name="namalengkap" placeholder="Nama Industri">
+                                </div>
+                                
 
-                            <div class="field">
-                                <label>Industri</label>
-                                <select class="ui fluid dropdown">
-                                  <option value="">Pilih Industri</option>
-                                      <option value="AK">Akuntansi dan keuangan</option>
-                                      <option value="AR">Arsitektur</option>
-                                      <option value="FA">Fasion</option>
-                                      <option value="FG">Fotografi</option>
-                                      <option value="IN">Industri</option>
-                                      <option value="IT">Internet</option>
-                                      <option value="KF">Kedokteran dan Farmasi</option>
-                                      <option value="KO">Konsultan</option>
-                                      <option value="OL">Olahraga</option>
-                                      <option value="PO">Politik</option>
-                                      <option value="LL">Lain-lain</option>
-                                </select>
-                              </div>
+                                <div class="field">
+                                    <label>Industri</label>
+                                    <select class="ui fluid dropdown" name="industri">
+                                      <option value="">Pilih Industri</option>
+                                          <option value="Akuntansi dan keuangan">Akuntansi dan keuangan</option>
+                                          <option value="Arsitektur">Arsitektur</option>
+                                          <option value="Fasion">Fasion</option>
+                                          <option value="Fotografi">Fotografi</option>
+                                          <option value="Industri">Industri</option>
+                                          <option value="Internet">Internet</option>
+                                          <option value="Kedokteran dan Farmasi">Kedokteran dan Farmasi</option>
+                                          <option value="Konsultan">Konsultan</option>
+                                          <option value="Olahraga">Olahraga</option>
+                                          <option value="Politik">Politik</option>
+                                          <option value="Lain-lain">Lain-lain</option>
+                                    </select>
+                                  </div>
 
-                            <div class="two fields">
-                              <div class="field">
-                                <label>Email</label>
-                                <input type="email" placeholder="First Name">
-                              </div>
-                              <div class="field">
-                                <label>Password</label>
-                                <input type="password" placeholder="Middle Name">
-                              </div>
-                            </div>
-                            <div class="field">
-                              
-                                <label>Dengan klik Daftar, Anda menyetujui Syarat dan Ketentuan yang berlaku</label>
-                              
-                            </div>
-                            <button class="ui fluid yellow button" type="submit">Daftar</button>
+                                <div class="two fields">
+                                  <div class="field">
+                                    <label>Email</label>
+                                    <input type="email" placeholder="contoh@mail.com" name="email">
+                                  </div>
+                                  <div class="field">
+                                    <label>Password</label>
+                                    <input type="password" placeholder="password" name="password">
+                                  </div>
+                                </div>
+                                <div class="field">
+                                  <label>Nomor Telepon</label>
+                                  <input type="text" name="nomortelepon" placeholder="08*********">
+                                </div>
+
+                                <input class="ui grey" type="file" name="fileToUpload">Foto Profile</input>
+                                  <br><br>
+
+                                <div class="field">
+                                  <label>Deskripsi Perusahaan</label>
+                                  <textarea style="margin-top: 0px; margin-bottom: 0px; height: 176px;" name="deskripsi"></textarea>
+                                </div>
+                                <div class="field">
+                                  
+                                    <label>Dengan klik Daftar, Anda menyetujui Syarat dan Ketentuan yang berlaku</label>
+                                  
+                                </div>
+                                <button class="ui fluid yellow button" type="submit" value="submit">Daftar</button>
                           </form>
                  
                     
@@ -75,3 +86,4 @@ $('.special.cards .image').dimmer({
   on: 'hover'
 });
 </script>
+

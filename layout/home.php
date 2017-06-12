@@ -3,10 +3,9 @@
                 <!-- <img src="public/images/banner-2.jpg"> -->
         <div class="banner-section">
             <section class="ui segment banner slider square" id="banner">
-                <div><img class="center-cropped" src="public/images/banner-1.jpg"></div>
-                <div><img class="center-cropped" src="public/images/banner-2.jpg"></div>
-                <div><img class="center-cropped" src="public/images/banner-3.jpg"></div>
-                <div><img class="center-cropped" src="public/images/banner-4.jpg"></div>
+                <div><img class="center-cropped" src="public/images/banner1.jpg"></div>
+                <div><img class="center-cropped" src="public/images/banner2.jpg"></div>
+                <div><img class="center-cropped" src="public/images/banner3.jpg"></div>
             </section>
             
         </div>
@@ -26,8 +25,8 @@
 
                             <div class="column">
                                 <div class="ui header">
-                                    <i class="grey diamond icon"></i>
-                                    <div class="content">Freelancer
+                                    <i class="yellow star icon"></i>
+                                    <div class="content">Lowongan Pekerjaan
                                         <div class="sub header">Berkualitas
                                         </div>
                                     </div>
@@ -36,9 +35,9 @@
 
                             <div class="column">
                                 <div class="ui header">
-                                    <i class="grey diamond icon"></i>
-                                    <div class="content">Transaksi
-                                        <div class="sub header">Aman
+                                    <i class="yellow history icon"></i>
+                                    <div class="content">Informasi
+                                        <div class="sub header">Uptodate
                                         </div>
                                     </div>
                                 </div>
@@ -46,9 +45,9 @@
 
                             <div class="column">
                                 <div class="ui header">
-                                    <i class="grey diamond icon"></i>
-                                    <div class="content">Garansi Uang
-                                        <div class="sub header">kembali
+                                    <i class="yellow unhide icon"></i>
+                                    <div class="content">Paling
+                                        <div class="sub header">Terpercaya
                                         </div>
                                     </div>
                                 </div>
@@ -79,8 +78,8 @@
                                 <div class="ui three stackable cards">
 
                                     <div class="card">
-                                        <a class="image" href="?p=lowongan">
-                                            <img src="public/images/gravicloth-logo.png">
+                                        <a class="image" href="?p=WD">
+                                            <img src="public/images/website.jpg">
                                         </a>
                                         <div class="content">
                                             <a class="header" href="?p=lowongan">Website Development</a>
@@ -91,8 +90,8 @@
                                     </div>
 
                                     <div class="card">
-                                        <a class="image" href="?p=lowongan">
-                                            <img src="public/images/gravicloth-logo.png">
+                                        <a class="image" href="?p=CEO">
+                                            <img src="public/images/ceo.jpg">
                                         </a>
                                         <div class="content">
                                             <a class="header" href="?p=lowongan">CEO Marketing</a>
@@ -103,8 +102,8 @@
                                     </div>
 
                                     <div class="card">
-                                        <a class="image" href="?p=lowongan">
-                                            <img src="public/images/gravicloth-logo.png">
+                                        <a class="image" href="?p=MA">
+                                            <img src="public/images/mobile.jpg">
                                         </a>
                                         <div class="content">
                                             <a class="header" href="?p=lowongan">Mobile App</a>
@@ -115,8 +114,8 @@
                                     </div>
 
                                     <div class="card">
-                                        <a class="image" href="?p=lowongan">
-                                            <img src="public/images/gravicloth-logo.png">
+                                        <a class="image" href="?p=DM">
+                                            <img src="public/images/design.jpg">
                                         </a>
                                         <div class="content">
                                             <a class="header" href="?p=lowongan">Design & Multimedia</a>
@@ -127,8 +126,8 @@
                                     </div>
 
                                     <div class="card">
-                                        <a class="image" href="?p=lowongan">
-                                            <img src="public/images/gravicloth-logo.png">
+                                        <a class="image" href="?p=DE">
+                                            <img src="public/images/data.jpg">
                                         </a>
                                         <div class="content">
                                             <a class="header" href="?p=lowongan">Data Entry</a>
@@ -139,8 +138,8 @@
                                     </div>
 
                                     <div class="card">
-                                        <a class="image" href="?p=lowongan">
-                                            <img src="public/images/gravicloth-logo.png">
+                                        <a class="image" href="?p=WR">
+                                            <img src="public/images/writing.jpg">
                                         </a>
                                         <div class="content">
                                             <a class="header" href="?p=lowongan">Writing</a>
@@ -163,7 +162,42 @@
     </div>
 
 <!-- Info --> 
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
 
+// Create connection
+$conn = mysql_connect($servername, $username, $password);
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysql_connect_error());
+}
+mysql_select_db('oilancer');
+//jumlah perusahaan
+$sql = "SELECT * FROM user where rule = '2'";
+$query = mysql_query($sql);
+$data = array();
+while(($row = mysql_fetch_array($query)) != null){
+    $data[] = $row;
+}
+$count = count($data);
+
+//jumlah pekerjaan
+$sql2 = "SELECT * FROM pekerjaan";
+$query2 = mysql_query($sql2);
+$data2 = array();
+while(($row = mysql_fetch_array($query2)) != null){
+    $data2[] = $row;
+}
+$count2 = count($data2);
+
+//total gaji
+$sql3 = "SELECT sum(gaji) FROM `pekerjaan` WHERE 1";
+
+//echo "Jumlah data dari array PHP: $count2";
+
+?>
     <div class="info-section">
         <div class="ui segment">
             <div class="ui container">
@@ -176,8 +210,8 @@
 
                             <div class="column">
                                 <div class="ui header">
-                                    <i class="grey server icon"></i>
-                                    <div class="content">99.999
+                                    <i class="yellow server icon"></i>
+                                    <div class="content"><?php echo $count2 ?>
                                         <div class="sub header">Job Terpasang
                                         </div>
                                     </div>
@@ -186,7 +220,7 @@
 
                             <div class="column">
                                 <div class="ui header">
-                                    <i class="grey dollar icon"></i>
+                                    <i class="yellow dollar icon"></i>
                                     <div class="content">$909.090
                                         <div class="sub header">Jumlah Job Keseluruhan
                                         </div>
@@ -196,9 +230,9 @@
 
                             <div class="column">
                                 <div class="ui header">
-                                    <i class="grey user icon"></i>
-                                    <div class="content">234.533
-                                        <div class="sub header">Jumlah Freelancer
+                                    <i class="yellow user icon"></i>
+                                    <div class="content"><?php echo $count ?>
+                                        <div class="sub header">Jumlah Perusahaan
                                         </div>
                                     </div>
                                 </div>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -24,35 +25,46 @@
 </head>
 
 <body>
+
+
 <!-- header -->
-    <?php include 'layout/header.php'; ?>
+
 
         
     
 <?php 
-        $pages_dir = 'layout';
+    $pages_dir = 'layout';
         if (!empty($_GET['p'])){
             $pages = scandir($pages_dir, 0);
             unset($pages[0], $pages[1]);
  
             $p = $_GET['p'];
-            
+
             if(in_array($p.'.php', $pages)){
-                include($pages_dir.'/'.$p.'.php');
+
+                if($p=='login' || $p=='logout'){
+                    include($pages_dir.'/'.$p.'.php');
+                }
+                else{
+                    include 'layout/header.php';
+                    include($pages_dir.'/'.$p.'.php');
+                    include 'layout/footer.php';
+                }
+                
             } else {
                 echo 'Halaman tidak ditemukan! :(';
             }
         }
         else {
+            include 'layout/header.php';
             include($pages_dir.'/home.php');
+            include 'layout/footer.php';
         }
-        ?>
 
-  
-
+?>
 
   <!-- Footer -->
-             <?php include 'layout/footer.php'; ?>
+
 
 </body>
 

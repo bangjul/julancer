@@ -9,39 +9,34 @@
                 <p class="ui header">Daftar Akun Sekarang</p>
                 <br>
                     
-                           <div class="ui form">
+                           <form class="ui form" method="post" action="?p=insert_register_freelance">
                             <div class="field">
                               <label>Nama Lengkap</label>
-                              <input type="text" name="nama-lengkap" placeholder="Nama Lengkap">
+                              <input type="text" name="namalengkap" placeholder="Nama Lengkap">
                             </div>
-                            <div class="field">
-                              <label>Username</label>
-                              <input type="text" name="username" placeholder="Username">
-                            </div>
-
-                            
+                                                        
                             <div class="two fields">
                               <div class="field">
                                 <label>Email</label>
-                                <input type="email" placeholder="Email" id="txtEmail">
+                                <input type="email" placeholder="Email" name="email">
                               </div>
                               <div class="field">
                                 <label>Password</label>
-                                <input type="password" placeholder="Password" id="txtPassword">
+                                <input type="password" placeholder="Password" name="password">
                               </div>
                             </div>
 
                             <div class="field">
                               <label>Nomor Telepon</label>
-                              <input type="text" name="nomor-telepon" placeholder="08*********">
+                              <input type="text" name="nomortelepon" placeholder="08*********">
                             </div>
                             <div class="field">
                               
                                 <label>Dengan klik Daftar, Anda menyetujui Syarat dan Ketentuan yang berlaku</label>
                               
                             </div>
-                            <button class="ui fluid yellow button" id="btnRegister">Daftar</button>
-                          </div>
+                            <button class="ui fluid yellow button" type="submit" value="daftar">Daftar</button>
+                          </form>
                  
                     
 

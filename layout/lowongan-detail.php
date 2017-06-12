@@ -1,3 +1,4 @@
+
 <!-- Kategori & List barang -->
 <section class="category-top-section">
     <div class="ui container">
@@ -14,21 +15,21 @@
 
                                   <div class="item">
                                     <div class="image">
-                                      <img src="public/images/grav.png">
+                                      <img src="<?=$_POST['gambar_pekerjaan']?>.jpg ">
                                     </div>
                                     <div class="content">
-                                      <a class="header">Membutuhkan Pembuatan Website Dinamis</a>
+                                      <a class="header"><?= $_POST['judul'] ?></a>
                                       <div class="meta">
-                                        <span class="cinema">Posted 20 Mei 2017</span>
+                                        <span class="cinema"><?= $_POST['tanggal_upload'] ?></span>
                                       </div>
                                       <div class="extra">
-                                        <div class="ui label"><i class="dollar icon"></i> 200</div>
-                                        <div class="ui label"><i class="calendar icon"></i> 30 Juli 2017</div>
+                                        <div class="ui label"><i class="dollar icon"></i> <?= $_POST['gaji'] ?></div>
+                                        <div class="ui label"><i class="calendar icon"></i> <?= $_POST['tanggal_berahir'] ?></div>
                                       </div>
                                       <div class="ui divider" ></div>
 
                                       <div class="description">Deskripsi :
-                                        <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem  
+                                        <p><?= $_POST['keterangan'] ?>
                                       
                                     </div>
                                   </div>
@@ -37,7 +38,7 @@
                             </div>
                         </section>
 
-                        <section class="ui very padded segment square">
+                        <!-- <section class="ui very padded segment square">
                             <div class="ui container">
                             <label>File Unggahan Client</label>
                                 <div class="ui divided items">
@@ -57,9 +58,9 @@
 
                                 </div>
                             </div>
-                        </section>
+                        </section> -->
 
-                        <div class="ui fluid floated primary button">
+                        <div class="ui fluid floated primary button" onclick="redirect('<?= $_POST['link'] ?>')">
                             Daftar Untuk Pekerjaan Ini
                             <i class="right chevron icon"></i>
                         </div>
@@ -67,29 +68,59 @@
 
                     </div>
                 </div>
+                                <?php
+                                  $servername = "localhost";
+                                  $username = "root";
+                                  $password = "";
 
+                                  // Create connection
+                                  $conn = mysql_connect($servername, $username, $password);
+                                  // Check connection
+                                  if (!$conn) {
+                                      die("Connection failed: " . mysql_connect_error());
+                                  }
+                                  mysql_select_db('oilancer');
+
+                                  $id_user_upload = $_POST['id_user'];
+                                  //$id_userAktif=$_SESSION['id_user'];
+                                  $queri="Select * From user where id=$id_user_upload" ;  //menampikan SEMUA data dari tabel siswa
+                                  $hasil=MySQL_query ($queri);    //fungsi untuk SQL
+
+                                  $row = MySQL_fetch_assoc($hasil);
+                                  $nama_lengkap= $row['nama_lengkap'];
+                                  $email= $row['email'];
+                                  $nomor_telepon= $row['nomor_telepon'];
+                                  $foto_profile= $row['foto_profile'];
+                                  
+                                ?>
             <div class="four wide column">
                 <div class="category-section">
                     <div class="ui vertical borderless menu square" id="category-lowongan">
 
                         <div class="ui card">
                           <div class="content">
-                            Dipost Oleh
+                            Dipost Oleh :
                           </div>
                           
-                            <a class="image" href="?p=profile"> 
-                                <img src="public/images/client.png">
-                                </a>
+                            <div class="image"> 
+                                <img src="<?=$foto_profile?>.jpg">
+                            </div>
                           
                           <div class="content">
                             <i class="user icon"></i>
-                            Julio
+                            <?= "$nama_lengkap" ?>
                           </div>
-                          <div class="extra content">
-                            <div class="ui large transparent left icon input">
+                          <div class="content">
+                            
                               <i class="call outline icon"></i>
-                              <input type="text" placeholder="0822 4514 7870">
-                            </div>
+                              <?= "$nomor_telepon" ?>
+                            
+                          </div>
+                          <div class="content">
+                            
+                              <i class="mail outline icon"></i>
+                              <?= "$email" ?>
+                            
                           </div>
                         </div>
                         
@@ -100,4 +131,9 @@
 
         </div>
     </div>
+    <script type="text/javascript">
+      function redirect(url){
+        window.location.replace("http://"+url);
+      }
+    </script>
 </section>

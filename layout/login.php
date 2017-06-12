@@ -1,3 +1,51 @@
+<?php
+   include("koneksi.php");
+   include("session.php");
+   
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+      // username and password sent from form 
+      
+      $myusername = mysqli_real_escape_string($db,$_POST['namalengkap']);
+      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
+      
+      $sql = "SELECT * FROM user WHERE nama_lengkap = '$myusername' and password = '$mypassword' LIMIT 0,1";
+      $result = mysqli_query($db,$sql);
+      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+      //$active = $row['active'];
+      $count = mysqli_num_rows($result);
+      
+      // If result matched $myusername and $mypassword, table row must be 1 row
+	
+      if($count == 1) {
+         //session_register("nama_lengkap");
+         $_SESSION['login_user'] = $myusername;
+		$_SESSION['rule'] = $row['rule'];
+
+         if($_SESSION['rule'] == 1){
+         	header ("location: /oilancer/admin/index.php");
+         }
+         else if($_SESSION['rule'] == 2){
+         	header("location: /oilancer/index.php");	
+         }else{
+         	echo "<script>windows.alert('Error')</script>";
+         }
+         
+      }else {
+         $error = "Your Login Name or Password is invalid";
+      }
+   }
+?>
+
+<script>
+	window.alert('tes');
+	window.alert('<?= $count?>');
+	window.alert('<?= $_SESSION['rule2'] ?>');
+	window.alert('<?= $row['rule'] ?>');
+</script>
+
+
+
+
 <div class="login-section" id="div_login" style="display: 'none'">
 		<div class="ui stackable middle aligned center aligned grid" id="top-login-regis">
 		    <div class="column" id="content-login-regis">
@@ -8,9 +56,9 @@
 		        <p class="ui header">Silahkan masuk ke dalam akun kamu</p>
 		        <br>
 			       
-					        <div class="ui form">
+					        <form class="ui form" method="POST" action="">
 					            <div class="field">
-					                <input type="email" name="user" placeholder="E-mail" id="txtEmail">
+					                <input type="text" name="namalengkap" placeholder="Nama Perusahaan">
 					            </div>
 					            	
 					            <br>
@@ -27,18 +75,18 @@
 									  </div>
 					            </div>
 					            <br>
-					            <button class="ui fluid yellow button" value="Masuk" id="btnLogin">Login</button>
+					            <button class="ui fluid yellow button" type="submit" value="Masuk" id="btnLogin">Login</button>
 					            <br>
-					            <a>Lupa Password?</a>
+					            <!-- <a>Lupa Password?</a> -->
 					  			
 
-					        </div>
+					        </form>
 			        
 
 					        <br>
 					        <div class="ui horizontal divider">Atau</div>
 						        <br>
-						        <button class="ui facebook button"><i class="facebook icon"></i>Masuk dengan Facebook</button>
+						        <button class="ui facebook button" style="display: none"><i class="facebook icon"></i>Masuk dengan Facebook</button>
 						        <button class="ui google plus button" id="login_google"><i class="google icon"></i>Masuk dengan Google</button>
 						        <br>
 						        <br>
@@ -52,3 +100,6 @@
 <script>
 $('.ui.checkbox').checkbox();
 </script>
+
+
+
