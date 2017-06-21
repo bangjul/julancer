@@ -13,7 +13,7 @@
 
                            <div class="field">
                                 <label>Pilih kategori</label>
-                                <select class="ui fluid dropdown" name="kategori">
+                                <select class="ui fluid dropdown" name="kategori" required>
                                   <option value="">kategori</option>
                                       <option value="Website Development">Website Development</option>
                                       <option value="CEO Marketing">CEO Marketing</option>
@@ -26,11 +26,11 @@
 
                             <div class="field">
                               <label>Pekerjaan Apa yang Anda Butuhkan?</label>
-                              <input type="text" name="judul-job" placeholder=" ">
+                              <input type="text" name="judul-job" placeholder=" " required>
                             </div>
                             <div class="field">
                               <label>Jelaskan Kebutuhan Anda Secara Lengkap</label>
-                              <textarea style="margin-top: 0px; margin-bottom: 0px; height: 176px;" name="deskripsi"></textarea>
+                              <textarea style="margin-top: 0px; margin-bottom: 0px; height: 176px;" name="deskripsi" required></textarea>
                             </div>
 
                             <input class="ui grey" type="file" name="fileToUpload">upload file</input>
@@ -43,7 +43,7 @@
                               <div class="ui label">
                                 <i class="yellow dollar icon"></i>
                               </div>
-                              <input type="text" placeholder="Gaji" name="gaji">
+                              <input type="text" placeholder="Gaji" name="gaji" required>
                               <div class="ui basic label">.00</div>
                             </div>
                             <br>
@@ -52,12 +52,12 @@
                                 <div class="ui label">
                                   <i class="yellow calendar icon"></i>
                                 </div>
-                                <input type="date" name="tanggal_berahir">
+                                <input type="date" name="tanggal_berahir" required>
                             </div>
                             <br>
                             <div class="field">
                               <label>Link Resmi</label>
-                              <input type="text" name="link" placeholder="http://www.oilancer.com">
+                              <input type="text" name="link" placeholder="http://www.oilancer.com" required>
                             </div>
                             <br>
 

@@ -20,7 +20,7 @@
       $_SESSION['industri'] = $row['industri'];
       $_SESSION['deskripsi'] = $row['deskripsi'];
       $_SESSION['foto_profile'] = $row['foto_profile'];
-      // $_SESSION['rule'] = $row['rule'];
+      $_SESSION['rule'] = $row['rule'];
       
       // if(!isset($_SESSION['login_user'])){
       //    header("HTTP/1.0 404 Not Found");

@@ -24,7 +24,7 @@
          if($_SESSION['rule'] == 1){
          	header ("location: /oilancer/admin/index.php");
          }
-         else if($_SESSION['rule'] == 2){
+         else if($_SESSION['rule'] == 2 || $_SESSION['rule'] == 3){
          	header("location: /oilancer/index.php");	
          }else{
          	echo "<script>windows.alert('Error')</script>";
@@ -58,7 +58,7 @@
 			       
 					        <form class="ui form" method="POST" action="">
 					            <div class="field">
-					                <input type="text" name="namalengkap" placeholder="Nama Perusahaan">
+					                <input type="text" name="namalengkap" placeholder="username">
 					            </div>
 					            	
 					            <br>

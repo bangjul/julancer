@@ -1,8 +1,117 @@
 <!-- Kategori & List barang -->
 <?php
-  if(isset($_POST['btn-submit-token'])){
-     $string = $_POST['string'];
-     $auth_user->submitToken($string,$user_id);
+  if(isset($_POST['submit_profile'])){
+
+    
+      echo '<script language="javascript">';
+      echo 'alert("message successfully sent")';
+      echo '</script>';
+
+     
+     // $string = $_POST['string'];
+     // $auth_user->submitToken($string,$user_id);
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      // Create connection
+      $conn = mysql_connect($servername, $username, $password);
+      // Check connection
+      if (!$conn) {
+          die("Connection failed: " . mysql_connect_error());
+      }
+      mysql_select_db('oilancer');
+      $id_userAktif=$_SESSION['id_user'];
+
+
+      $namalengkap=$_POST['namalengkap'];
+      $nomortelepon=$_POST['nomortelepon'];
+      $deskripsi=$_POST['deskripsi'];
+      $_SESSION['login_user'] = $namalengkap;
+      
+      $queri="UPDATE user SET nama_lengkap = '$namalengkap', nomor_telepon = '$nomortelepon', deskripsi = '$deskripsi' WHERE id=$id_userAktif" ;
+      if (mysql_query($queri, $conn)) {
+          echo "Record updated successfully";
+           //header("location: http://localhost/oilancer/index.php?p=profile");   
+      } else {
+          echo "Error updating record: " . mysql_error($conn);
+      }
+
+  }
+
+  if(isset($_POST['btnEditJob'])){
+
+    
+      echo '<script language="javascript">';
+      echo 'alert("message successfully sent")';
+      echo '</script>';
+
+     
+     // $string = $_POST['string'];
+     // $auth_user->submitToken($string,$user_id);
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      // Create connection
+      $conn = mysql_connect($servername, $username, $password);
+      // Check connection
+      if (!$conn) {
+          die("Connection failed: " . mysql_connect_error());
+      }
+      mysql_select_db('oilancer');
+      //$id_userAktif=$_SESSION['id_user'];
+
+
+      $kategori=$_POST['kategori'];
+      $judul=$_POST['judul'];
+      $keterangan=$_POST['deskripsi'];
+      $gaji=$_POST['gaji'];
+      $link=$_POST['link'];
+      $tanggal_berahir=$_POST['tanggal_berahir'];
+
+      $id_job = $_POST['id'];
+      //$_SESSION['login_user'] = $namalengkap;
+      
+      $queri="UPDATE pekerjaan SET kategori = '$kategori', judul = '$judul', keterangan = '$keterangan' , gaji = '$gaji' , tanggal_berahir = '$tanggal_berahir' , link = '$link' WHERE id = $id_job" ;
+      if (mysql_query($queri, $conn)) {
+          echo "Record updated successfully";
+           //header("location: http://localhost/oilancer/index.php?p=profile");   
+      } else {
+          echo "Error updating record: " . mysql_error($conn);
+      }
+
+  }
+
+  if(isset($_POST['btnHapusJob'])){
+
+     
+     // $string = $_POST['string'];
+     // $auth_user->submitToken($string,$user_id);
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      // Create connection
+      $conn = mysql_connect($servername, $username, $password);
+      // Check connection
+      if (!$conn) {
+          die("Connection failed: " . mysql_connect_error());
+      }
+      mysql_select_db('oilancer');
+      //$id_userAktif=$_SESSION['id_user'];
+
+
+      $id_hapus = $_POST['id'];
+      
+      //$_SESSION['login_user'] = $namalengkap;
+      
+      $queri= "delete from pekerjaan where id = $id_hapus" ;
+      if (mysql_query($queri, $conn)) {
+          echo "Delete successfully";
+           //header("location: http://localhost/oilancer/index.php?p=profile");   
+      } else {
+          echo "Error deleting record: " . mysql_error($conn);
+          
+      }
+
   }
 ?>
 <br>
@@ -69,8 +178,8 @@
                                   mysql_select_db('oilancer');
 
                                   $id_userAktif=$_SESSION['id_user'];
-                                $queri="Select * From pekerjaan where id_user=$id_userAktif" ;  //menampikan SEMUA data dari tabel siswa
-                                $hasil=MySQL_query ($queri);    //fungsi untuk SQL
+                                  $queri="Select * From pekerjaan where id_user=$id_userAktif" ;  //menampikan SEMUA data dari tabel siswa
+                                  $hasil=MySQL_query ($queri);    //fungsi untuk SQL
 
                                 // perintah untuk membaca dan mengambil data dalam bentuk array
                                 while ($data = mysql_fetch_array ($hasil)){
@@ -103,13 +212,17 @@
                                                       </p>
                                                   </div>
                                                 
-                                                    <div class="ui right floated primary button">
+                                                    <div class="ui right floated primary button" onclick="edit_job('.$data['id'].')">
                                                       Edit
                                                       <i class="right edit icon"></i>
                                                     </div>
-                                                    <div class="ui right floated negative button" onclick="hapus">
+                                                    <div class="ui right floated negative button" onclick="hapus_job('.$data['id'].')">
                                                       Hapus
                                                       <i class="right remove icon"></i>
+                                                    </div>
+                                                    <div class="ui right floated positive button" onclick="list_pendaftar('.$data['id'].')">
+                                                      List Pendaftar
+                                                      <i class="right user icon"></i>
                                                     </div>
                                                 
                                            </div>';
@@ -154,94 +267,172 @@
     </div>
 </section>
 
-<div class="ui modal" id="modal">
-  <i class="close icon"></i>
-  <div class="header">
-    Edit Profile
-  </div>
-  <!-- <div class="image content">
-    <div class="image">
-      An image can appear on left or an icon
-    </div>
-    <div class="description">
-      A description can appear on the right
-    </div>
-  </div> -->
-
-
-
-            <div class="register-section">
+      <div class="ui modal" id="modal">
+            <i class="close icon"></i>
+            <div class="header">
+              Edit Profile
+            </div>
+                <div class="register-section">
                     <div class="ui stackable middle aligned center aligned grid" id="top-login-regis">
-                        <div class="column" id="content-login-regis">
-                    
-                           
+                        <div class="column" id="content-login-regis">                           
                            <form class="ui form" method="post" enctype = "multipart/form-data" action="">
                                 <div class="field">
                                   <label>Nama Industri</label>
                                   <input type="text" name="namalengkap" placeholder="<?php echo $_SESSION['nama_perusahaan'] ?>">
                                 </div>
                                 
-
-                                <div class="field">
-                                    <label>Industri</label>
-                                    <select class="ui fluid dropdown" name="industri">
-                                      <option value=""></option>
-                                          <option value="Akuntansi dan keuangan">Akuntansi dan keuangan</option>
-                                          <option value="Arsitektur">Arsitektur</option>
-                                          <option value="Fasion">Fasion</option>
-                                          <option value="Fotografi">Fotografi</option>
-                                          <option value="Industri">Industri</option>
-                                          <option value="Internet">Internet</option>
-                                          <option value="Kedokteran dan Farmasi">Kedokteran dan Farmasi</option>
-                                          <option value="Konsultan">Konsultan</option>
-                                          <option value="Olahraga">Olahraga</option>
-                                          <option value="Politik">Politik</option>
-                                          <option value="Lain-lain">Lain-lain</option>
-                                    </select>
-                                  </div>
-
-                                <div class="two fields">
-                                  <div class="field">
-                                    <label>Email</label>
-                                    <input type="email" placeholder="<?php echo $_SESSION['email'] ?>" name="email">
-                                  </div>
-                                  <div class="field">
-                                    <label>Password</label>
-                                    <input type="password" placeholder="*******" name="password">
-                                  </div>
-                                </div>
+                                
                                 <div class="field">
                                   <label>Nomor Telepon</label>
                                   <input type="text" name="nomortelepon" placeholder="<?= $_SESSION['nomor_telepon'] ?>">
                                 </div>
 
-                                <input class="ui grey" type="file" name="fileToUpload">Foto Profile</input>
-                                  <br><br>
-
                                 <div class="field">
                                   <label>Deskripsi Perusahaan</label>
                                   <textarea style="margin-top: 0px; margin-bottom: 0px; height: 176px;" name="deskripsi" placeholder="<?php echo $_SESSION['deskripsi'] ?>"></textarea>
                                 </div>
-                                
-
                               </div>
                           </div>
                   </div>
 
-  <div class="actions">
-    <input type="submit" name="submit_profile">
-  </div>
-  </form>
-</div>
+                <div class="actions">
+                  <input type="submit" name="submit_profile">
+                </div>
+            </form>
+      </div>
+
+              
+
+
+              <div class="ui modal" id="modal_edit_job">
+                <i class="close icon"></i>
+                  <div class="header">
+                    Edit JOB
+                  </div>
+                    <div class="ui stackable middle aligned center aligned grid" >
+                      <form class="ui form" method="post" enctype = "multipart/form-data">
+                           <div class="field">
+                                <label>Pilih kategori</label>
+                                <select class="ui fluid dropdown" name="kategori" placeholder="kategori" required> 
+                                      <option value="" disabled selected>Pilih Kategori Anda</option>                                 
+                                      <option value="Website Development">Website Development</option>
+                                      <option value="CEO Marketing">CEO Marketing</option>
+                                      <option value="Mobile App">Mobile App</option>
+                                      <option value="Design dan Multimedia">Design dan Multimedia</option>
+                                      <option value="Data Entri">Data Entri</option>
+                                      <option value="Writing">Writing</option>
+                                </select>
+                              </div>
+
+                            <div class="field">
+                              <label>Pekerjaan Apa yang Anda Butuhkan?</label>
+                              <input type="text" name="judul" placeholder=" " required="">
+                            </div>
+                            <div class="field">
+                              <label>Jelaskan Kebutuhan Anda Secara Lengkap</label>
+                              <textarea style="margin-top: 0px; margin-bottom: 0px; height: 176px;" name="deskripsi"></textarea>
+                            </div>
+                           
+                           
+                            <div class="ui fluid labeled input">
+                              <div class="ui label">
+                                <i class="yellow dollar icon"></i>
+                              </div>
+                              <input type="text" placeholder="Gaji" name="gaji" required>
+                              <input type="text" placeholder="" name="id" id="id" hidden>
+                              <div class="ui basic label">.00</div>
+                            </div>
+                            <br>
+                            <label>Kapan lamaran ini ditutup</label>
+                            <div class="ui fluid labeled input">
+                                <div class="ui label">
+                                  <i class="yellow calendar icon"></i>
+                                </div>
+                                <input type="date" name="tanggal_berahir">
+                            </div>
+                            <br>
+                            <div class="field">
+                              <label>Link Resmi</label>
+                              <input type="text" name="link" placeholder="http://www.oilancer.com">
+                            </div>
+                            <br>
+
+                            <button class="ui fluid yellow button" type="submit" value="submit" name="btnEditJob">Edit Job</button>
+                      </form>
+                    </div>
+                  </div>
 
 
 
+<!-- hapus-modal -->
+        <div class="ui modal"  id="modal_hapus_job"">
+
+            <div class="header">
+              Delete Your Job
+              
+            </div>
+            <form method="post" style=" min-height: 80px;" id="modal_hapus_job">
+              <div class="content">
+              <br>
+                <p style="margin-left: 20px;">Are you sure you want to delete your job</p>
+              </div>
+                
+                <input type="text" placeholder="" name="id" id="id" value="<?= $id ?>" hidden>
+              
+              <div class="actions" style="text-align: right; margin-right: 20px;">
+                <div class="ui negative button">
+                  No
+                </div>
+                <button class="ui positive button" type="submit" value="submit" name="btnHapusJob">
+                  Yes
+                </button>
+                
+              </div>
+            </form>
+          </div>
+
+
+
+
+
+
+
+    <form id="list_pendaftar" method="POST" action="?p=list_pendaftar" >
+        <input type="text" name="id" id="id" hidden>        
+    </form>
+
+    <script type="text/javascript">
+        function list_pendaftar(id){
+            const list_pendaftar = document.getElementById("list_pendaftar");
+            document.getElementById("id").value = ""+id;
+            list_pendaftar.submit();
+            
+        };
+    </script>
 
 
 <script type="text/javascript">
 
   function edit(){
     $('#modal')
+      .modal('show')
+    ;
+  }
+
+  function edit_job(id){
+    const job_id = document.getElementById("job_id");
+    document.getElementById("id").value = ""+id;
+
+    $('#modal_edit_job')
+      .modal('show')
+    ;
+  }
+
+  function hapus_job(id){
+    const job_id = document.getElementById("job_id");
+    document.getElementById("id").value = ""+id;
+
+    $('#modal_hapus_job')
       .modal('show')
     ;
   }

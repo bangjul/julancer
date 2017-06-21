@@ -14,13 +14,13 @@
                            <form class="ui form" method="post" action="?p=insert_register_client" enctype = "multipart/form-data">
                                 <div class="field">
                                   <label>Nama Industri</label>
-                                  <input type="text" name="namalengkap" placeholder="Nama Industri">
+                                  <input type="text" name="namalengkap" placeholder="Nama Industri" required>
                                 </div>
                                 
 
                                 <div class="field">
                                     <label>Industri</label>
-                                    <select class="ui fluid dropdown" name="industri">
+                                    <select class="ui fluid dropdown" name="industri" required>
                                       <option value="">Pilih Industri</option>
                                           <option value="Akuntansi dan keuangan">Akuntansi dan keuangan</option>
                                           <option value="Arsitektur">Arsitektur</option>
@@ -39,16 +39,16 @@
                                 <div class="two fields">
                                   <div class="field">
                                     <label>Email</label>
-                                    <input type="email" placeholder="contoh@mail.com" name="email">
+                                    <input type="email" placeholder="contoh@mail.com" name="email" required>
                                   </div>
                                   <div class="field">
                                     <label>Password</label>
-                                    <input type="password" placeholder="password" name="password">
+                                    <input type="password" placeholder="password" name="password" required>
                                   </div>
                                 </div>
                                 <div class="field">
                                   <label>Nomor Telepon</label>
-                                  <input type="text" name="nomortelepon" placeholder="08*********">
+                                  <input type="text" name="nomortelepon" placeholder="08*********" required>
                                 </div>
 
                                 <input class="ui grey" type="file" name="fileToUpload">Foto Profile</input>
@@ -56,7 +56,7 @@
 
                                 <div class="field">
                                   <label>Deskripsi Perusahaan</label>
-                                  <textarea style="margin-top: 0px; margin-bottom: 0px; height: 176px;" name="deskripsi"></textarea>
+                                  <textarea style="margin-top: 0px; margin-bottom: 0px; height: 176px;" name="deskripsi" required></textarea>
                                 </div>
                                 <div class="field">
                                   

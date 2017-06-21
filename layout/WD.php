@@ -37,11 +37,11 @@ mysql_select_db('oilancer');
                         ?> -->
                         
                             <a class="item kategori" value="Website Development" href="?p=WD">Website Development</a>
-                            <a class="item kategori" value="CEO Marketing" >CEO Marketing</a>
-                            <a class="item kategori" value="Mobile App" >Mobile App</a>
-                            <a class="item kategori" value="Design dan Mutilmedia" >Design dan Mutilmedia</a>
-                            <a class="item kategori" value="Data Entri" >Data Entri</a>
-                            <a class="item kategori" value="Writing" >Writing</a>
+                            <a class="item kategori" value="CEO Marketing" href="?p=CEO">CEO Marketing</a>
+                            <a class="item kategori" value="Mobile App" href="?p=MA">Mobile App</a>
+                            <a class="item kategori" value="Design dan Mutilmedia" href="?p=DM">Design dan Mutilmedia</a>
+                            <a class="item kategori" value="Data Entri" href="?p=DE">Data Entri</a>
+                            <a class="item kategori" value="Writing" href="?p=WR">Writing</a>
                         
                     </div>
                 </div>

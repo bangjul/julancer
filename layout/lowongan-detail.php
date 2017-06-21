@@ -26,6 +26,9 @@
                                         <div class="ui label"><i class="dollar icon"></i> <?= $_POST['gaji'] ?></div>
                                         <div class="ui label"><i class="calendar icon"></i> <?= $_POST['tanggal_berahir'] ?></div>
                                       </div>
+                                      <div class="meta">
+                                        <span class="cinema">Link Resmi : <?= $_POST['link'] ?></span>
+                                      </div>
                                       <div class="ui divider" ></div>
 
                                       <div class="description">Deskripsi :
@@ -60,7 +63,8 @@
                             </div>
                         </section> -->
 
-                        <div class="ui fluid floated primary button" onclick="redirect('<?= $_POST['link'] ?>')">
+                        <!-- <div class="ui fluid floated primary button" onclick="redirect('<?= $_POST['link'] ?>')"> -->
+                            <div class="ui fluid floated primary button" onclick="changeDetail('<?=$_POST['id']?>')">
                             Daftar Untuk Pekerjaan Ini
                             <i class="right chevron icon"></i>
                         </div>
@@ -131,6 +135,22 @@
 
         </div>
     </div>
+
+
+    <form id="form_detail" method="POST" action="?p=daftar_lowongan" >
+        <input type="text" name="id" id="id" hidden>        
+    </form>
+    <script type="text/javascript">
+        function changeDetail(id){
+            const form_detail = document.getElementById("form_detail");
+            document.getElementById("id").value = ""+id;
+            form_detail.submit();
+            
+        };
+    </script>
+
+
+
     <script type="text/javascript">
       function redirect(url){
         window.location.replace("http://"+url);

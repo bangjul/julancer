@@ -9,7 +9,7 @@
                 <p class="ui header">Daftar Akun Sekarang</p>
                 <br>
                     
-                           <form class="ui form" method="post" action="?p=insert_register_freelance">
+                           <form class="ui form" method="post" action="?p=insert_register_freelance" enctype = "multipart/form-data">
                             <div class="field">
                               <label>Nama Lengkap</label>
                               <input type="text" name="namalengkap" placeholder="Nama Lengkap">
@@ -30,6 +30,8 @@
                               <label>Nomor Telepon</label>
                               <input type="text" name="nomortelepon" placeholder="08*********">
                             </div>
+                            <br>
+                            <input class="ui grey" type="file" name="fileToUpload">Foto Profile</input>
                             <div class="field">
                               
                                 <label>Dengan klik Daftar, Anda menyetujui Syarat dan Ketentuan yang berlaku</label>

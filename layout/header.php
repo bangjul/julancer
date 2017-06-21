@@ -32,13 +32,32 @@
                                 </a>
                         <?php
                             if(!empty($_SESSION['login_session'])){
-                                ?>
-                                <a class="item" href="?p=pasang-job">
+                                
+                                if($_SESSION['rule'] == 2){
+                                    ?>
+                                    <a class="item" href="?p=pasang-job">
                                         <div class="content">
                                             PASANG JOB
                                         </div>
-                                </a>
-                                
+                                    </a>
+
+                                    <a href="?p=profile">
+                                    <div class="item" style="display: block; text-align: center;" id="btnUser">
+                                        <div class="ui mini circular image">
+                                          <img src="<?=$_SESSION['foto_profile']?>.jpg">
+                                        </div>
+                                        <div class="middle aligned content">
+                                          <a class="header"><?php echo $_SESSION['login_session'] ?></a>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <a  href="?p=logout"><button class="hidden ui yellow button masuk" id="btnLogout" style="display: block;"><i class="grey sign in icon"></i>Logout</button></a>
+                                    </div>
+                                    </a>
+                                    <?php 
+                                }
+                                else {
+                                    ?>
                                     <a href="?p=profile">
                                     <div class="item" style="display: block; text-align: center;" id="btnUser">
                                         <div class="ui mini circular image">
@@ -53,6 +72,11 @@
                                     </div>
                                     </a>
                                 <?php
+
+                                }
+                                
+                                
+                                    
                             }else{
                                 ?>
                                     <div class="item">
