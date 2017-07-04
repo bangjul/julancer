@@ -1,13 +1,11 @@
 <!-- Kategori & List barang -->
 <?php
-  if(isset($_POST['submit_profile'])){
-
-    
+  if(isset($_POST['submit_profile'])){ 
       echo '<script language="javascript">';
       echo 'alert("message successfully sent")';
       echo '</script>';
 
-     
+
      // $string = $_POST['string'];
      // $auth_user->submitToken($string,$user_id);
       $servername = "localhost";
@@ -38,14 +36,10 @@
 
   }
 
-  if(isset($_POST['btnEditJob'])){
-
-    
-      echo '<script language="javascript">';
-      echo 'alert("message successfully sent")';
-      echo '</script>';
-
-     
+  elseif(isset($_POST['btnEditJob'])){    
+      // echo '<script language="javascript">';
+      // echo 'alert("message successfully sent")';
+      // echo '</script>';
      // $string = $_POST['string'];
      // $auth_user->submitToken($string,$user_id);
       $servername = "localhost";
@@ -68,6 +62,7 @@
       $link=$_POST['link'];
       $tanggal_berahir=$_POST['tanggal_berahir'];
 
+      //echo $_POST['id'];
       $id_job = $_POST['id'];
       //$_SESSION['login_user'] = $namalengkap;
       
@@ -81,11 +76,7 @@
 
   }
 
-  if(isset($_POST['btnHapusJob'])){
-
-     
-     // $string = $_POST['string'];
-     // $auth_user->submitToken($string,$user_id);
+  elseif(isset($_POST['btnHapusJob'])){
       $servername = "localhost";
       $username = "root";
       $password = "";
@@ -98,12 +89,13 @@
       mysql_select_db('oilancer');
       //$id_userAktif=$_SESSION['id_user'];
 
-
-      $id_hapus = $_POST['id'];
+      //echo $_POST['gaji'];
+      //echo $_POST['id2'];
+      $id_job = $_POST['id2'];
       
       //$_SESSION['login_user'] = $namalengkap;
       
-      $queri= "delete from pekerjaan where id = $id_hapus" ;
+      $queri= "delete from pekerjaan where id = $id_job" ;
       if (mysql_query($queri, $conn)) {
           echo "Delete successfully";
            //header("location: http://localhost/oilancer/index.php?p=profile");   
@@ -136,7 +128,7 @@
 
                                     </div>
                                     <div class="content">
-                                      <a class="header"><?php echo $_SESSION['nama_perusahaan'] ?></a>
+                                      <a class="header"><?php echo $_SESSION['login_session'] ?></a>
                                       <div class="meta">
                                         <span class="cinema"><i class="mail icon"></i><?php echo $_SESSION['email'] ?></span>
                                       </div>
@@ -178,12 +170,12 @@
                                   mysql_select_db('oilancer');
 
                                   $id_userAktif=$_SESSION['id_user'];
-                                  $queri="Select * From pekerjaan where id_user=$id_userAktif" ;  //menampikan SEMUA data dari tabel siswa
+                                  $queri="Select * From pekerjaan where id_user='$id_userAktif'" ;  //menampikan SEMUA data dari tabel siswa
                                   $hasil=MySQL_query ($queri);    //fungsi untuk SQL
 
                                 // perintah untuk membaca dan mengambil data dalam bentuk array
                                 while ($data = mysql_fetch_array ($hasil)){
-                                $id = $data['id'];
+                                //$id = $data['id'];
                                 echo '<div class="item">';
                                     echo '<div class="image">
                                         <img src="'.$data['gambar_pekerjaan'].'.jpg">
@@ -220,7 +212,7 @@
                                                       Hapus
                                                       <i class="right remove icon"></i>
                                                     </div>
-                                                    <div class="ui right floated positive button" onclick="list_pendaftar('.$data['id'].')">
+                                                    <div class="ui right floated positive button" onclick="kirim_id('.$data['id'].')">
                                                       List Pendaftar
                                                       <i class="right user icon"></i>
                                                     </div>
@@ -248,12 +240,17 @@
 
                         <div class="ui card">
                           <div class="content">
-                            Achievement
+                            Status
                           </div>
           
                           <div class="content">
                             <i class="check circle icon"></i>
-                            Job Yang Terpasang : 2
+                            <?php if($_SESSION['rule'] == 2){
+                              echo "Client";
+
+                              } elseif ($_SESSION['rule'] == 3) {
+                                echo "Freelance";
+                              } ?>
                           </div>
                           
                         </div>
@@ -267,6 +264,8 @@
     </div>
 </section>
 
+
+<!-- modal edit profile -->
       <div class="ui modal" id="modal">
             <i class="close icon"></i>
             <div class="header">
@@ -303,7 +302,7 @@
 
               
 
-
+<!-- modal edit job-->
               <div class="ui modal" id="modal_edit_job">
                 <i class="close icon"></i>
                   <div class="header">
@@ -326,7 +325,7 @@
 
                             <div class="field">
                               <label>Pekerjaan Apa yang Anda Butuhkan?</label>
-                              <input type="text" name="judul" placeholder=" " required="">
+                              <input type="text" name="judul"  required="">
                             </div>
                             <div class="field">
                               <label>Jelaskan Kebutuhan Anda Secara Lengkap</label>
@@ -364,29 +363,27 @@
 
 
 
-<!-- hapus-modal -->
+<!-- modal hapus job-->
         <div class="ui modal"  id="modal_hapus_job"">
 
             <div class="header">
               Delete Your Job
-              
             </div>
-            <form method="post" style=" min-height: 80px;" id="modal_hapus_job">
+            <form method="post" style=" min-height: 80px;"  enctype = "multipart/form-data">
               <div class="content">
               <br>
                 <p style="margin-left: 20px;">Are you sure you want to delete your job</p>
-              </div>
-                
-                <input type="text" placeholder="" name="id" id="id" value="<?= $id ?>" hidden>
-              
-              <div class="actions" style="text-align: right; margin-right: 20px;">
-                <div class="ui negative button">
+
+                <input type="text" placeholder="" id="id2" name="id2" hidden>
+
+              </div>  
+              <div  style="text-align: right; margin-right: 20px; margin-bottom: 20px">
+                <button class="ui negative button">
                   No
-                </div>
+                </button>
                 <button class="ui positive button" type="submit" value="submit" name="btnHapusJob">
                   Yes
                 </button>
-                
               </div>
             </form>
           </div>
@@ -396,19 +393,12 @@
 
 
 
-
-    <form id="list_pendaftar" method="POST" action="?p=list_pendaftar" >
-        <input type="text" name="id" id="id" hidden>        
+<!-- form list pendaftar -->
+    <form id="list_pendaftar" method="post" action="?p=list_pendaftar" >
+        <input type="text" name="id3" id="id3" hidden>        
     </form>
 
-    <script type="text/javascript">
-        function list_pendaftar(id){
-            const list_pendaftar = document.getElementById("list_pendaftar");
-            document.getElementById("id").value = ""+id;
-            list_pendaftar.submit();
-            
-        };
-    </script>
+
 
 
 <script type="text/javascript">
@@ -430,11 +420,19 @@
 
   function hapus_job(id){
     const job_id = document.getElementById("job_id");
-    document.getElementById("id").value = ""+id;
+    document.getElementById("id2").value = ""+id;
 
     $('#modal_hapus_job')
       .modal('show')
     ;
+    
   }
+
+  function kirim_id(id){
+    const list_pendaftar = document.getElementById("list_pendaftar");
+    document.getElementById("id3").value = ""+id;
+    list_pendaftar.submit();
+           
+    };
 
 </script>

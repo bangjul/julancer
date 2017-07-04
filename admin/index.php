@@ -12,9 +12,10 @@ if($_SESSION['rule'] != 1){
 <html>
 
 <head>
-<script type="text/javascript">
-    window.alert("<?= $_SESSION['rule'] ?>")
-</script>
+<!-- <script type="text/javascript">
+    //window.alert("<?= $_SESSION['rule'] ?>")
+    window.alert("Welcome Back <?= $_SESSION['login_session'] ?>")
+</script> -->
     <!-- Standard Meta -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -37,12 +38,46 @@ if($_SESSION['rule'] != 1){
 </head>
 
 <body>
-<!-- header -->
-    <?php include 'layout/admin-dashboard.php'; ?>
+<div class="full height">
+    <div class="ui grid">
 
-        
+        <?php include 'layout/menu.php'; ?>
+        <div class="thirteen wide column">
+            <?php include 'layout/header.php'; ?>
+            <!-- content --> 
+                <div class="ui yellow segment" style="min-height: 700px">
+                    
+                    <?php 
+                        $pages_dir = 'layout';
+                            if (!empty($_GET['p'])){
+                                $pages = scandir($pages_dir, 0);
+                                unset($pages[0], $pages[1]);
+                     
+                                $p = $_GET['p'];
+
+                                if(in_array($p.'.php', $pages)){
+
+                                    
+                                        include($pages_dir.'/'.$p.'.php');
+                                   
+                 
+                                } else {
+                                    include($pages_dir.'/'.'404'.'.php');
+                                    //echo 'Halaman tidak ditemukan! :(';
+                                    //header("location: /oilancer/admin/layout/404.php");
+                                }
+                            }
+                            else {
+                                include($pages_dir.'/dashboard.php');
+                            }
+
+                    ?>
+                </div>
+            <?php include 'layout/footer.php'; ?>  
+        </div>
     
-
+    </div>
+</div>  
 
 </body>
 

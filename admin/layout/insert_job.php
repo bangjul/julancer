@@ -28,7 +28,7 @@ $target_dir = "uploads/";
 
 $num0 = (rand(10,10000));
 //session_start();
- $id_user=$_SESSION['id_user'];
+ $id_user=$_POST['id_client'];
  $job_file=$target_dir. $num0;
  $kategori=$_POST['kategori'];
  $judul=$_POST['judul-job'];
@@ -36,6 +36,7 @@ $num0 = (rand(10,10000));
  $gaji=$_POST['gaji'];
  $tanggal_berahir=$_POST['tanggal_berahir'];
  $link=$_POST['link'];
+
 
 
 $sql = "INSERT INTO pekerjaan(id_user, kategori, judul, keterangan, gambar_pekerjaan, gaji, tanggal_berahir, link) VALUES ('$id_user', '$kategori','$judul','$keterangan', '$job_file', '$gaji', '$tanggal_berahir', '$link')";
@@ -48,7 +49,7 @@ $var = explode('.',$file['name']);
 $namee = mysql_insert_id();
 // $target_file = $target_dir .$_POST['judul-job']. ".".strtolower(array_pop($var)) ;
 // $target_file = $target_dir .$namee. ".".strtolower(array_pop($var)) ;
-$target_file = $job_file.".".strtolower(array_pop($var)) ;
+$target_file = "../".$job_file.".".strtolower(array_pop($var)) ;
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
@@ -102,7 +103,6 @@ if(! $retval ) {
 }
 
 echo "Entered data successfully\n";
-header("location: /oilancer/index.php");
-//$this->redirect("http://localhost/oilancer/");
+header("location: /oilancer/admin/index.php?p=datapekerjaan");
 mysql_close($conn);
 ?>

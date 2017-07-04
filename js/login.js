@@ -1,9 +1,28 @@
+config={
+	apiKey: "AIzaSyAYRuwDZVYHn4fOLLRIwMQaa9GNQBbfIws",
+    authDomain: "oilancer-168616.firebaseapp.com",
+    databaseURL: "https://oilancer-168616.firebaseio.com",
+    projectId: "oilancer-168616",
+    storageBucket: "oilancer-168616.appspot.com",
+    messagingSenderId: "598300711381"
+};
 
-	firebase.auth().onAuthStateChanged(function(user) {
+firebase.initializeApp(config);
+
+firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
 	    // User is signed in.
 	    console.log(user);
-		window.location.replace("http://localhost/oilancer");
+	    console.log(user.uid);
+	    console.log(user.email);
+	    console.log(user.displayName);
+	    console.log(user.photoURL);
+	    $("#input_email").val(user.email);
+	    $("#input_id").val(user.uid);
+	    $("#input_name").val(user.displayName);
+	    $("#input_foto").val(user.photoURL);
+	    $("#form_helper").submit();
+		// window.location.replace("http://localhost/oilancer");
 	  } else {
 	    // No user is signed in.
 	    console.log('not logged in');

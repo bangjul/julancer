@@ -2,7 +2,6 @@
  //include "koneksi.php"; //panggil file koneksi.php yang telah dibuat
  //mengambil variabel yang dikirim oleh index.php
 
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -14,7 +13,6 @@ if (!$conn) {
     die("Connection failed: " . mysql_connect_error());
 }
 
-
 //upload foto--------------------------------
 $file = $_FILES["fileToUpload"];
 $file_name = $file['name'];
@@ -22,33 +20,32 @@ $file_size = $file['size'];
 $file_tmp = $file['tmp_name'];
 $file_type = $file['type'];
 $target_dir = "uploads/";
+$num0 = (rand(10,10000));
 //upload foto------------------------------------
 
+ $nama_lengkap=$_POST['namalengkap'];
+ $nomortelepon=$_POST['nomortelepon'];
+ $email=$_POST['email'];
+ $password=$_POST['password'];
+ $rule="3";
+ $foto_profile=$target_dir. $num0;
+ // $nama_lengkap="lio";
+ // $industri="aaaa";
+ // $email="lio@gmal.com";
+ // $password="123";
+ // $rule="2";
 
+ $sql = "INSERT INTO user(nama_lengkap, nomor_telepon, email, password, rule, foto_profile) VALUES ('$nama_lengkap','$nomortelepon','$email', '$password', '$rule', '$foto_profile')";
 
-$num0 = (rand(10,10000));
-//session_start();
- $id_user=$_SESSION['id_user'];
- $job_file=$target_dir. $num0;
- $kategori=$_POST['kategori'];
- $judul=$_POST['judul-job'];
- $keterangan=$_POST['deskripsi'];
- $gaji=$_POST['gaji'];
- $tanggal_berahir=$_POST['tanggal_berahir'];
- $link=$_POST['link'];
-
-
-$sql = "INSERT INTO pekerjaan(id_user, kategori, judul, keterangan, gambar_pekerjaan, gaji, tanggal_berahir, link) VALUES ('$id_user', '$kategori','$judul','$keterangan', '$job_file', '$gaji', '$tanggal_berahir', '$link')";
 
 mysql_select_db('oilancer');
 $retval = mysql_query( $sql, $conn );
 
 //upload foto -----------------------------------------------------
 $var = explode('.',$file['name']);
-$namee = mysql_insert_id();
-// $target_file = $target_dir .$_POST['judul-job']. ".".strtolower(array_pop($var)) ;
-// $target_file = $target_dir .$namee. ".".strtolower(array_pop($var)) ;
-$target_file = $job_file.".".strtolower(array_pop($var)) ;
+//$namee = mysql_insert_id();
+
+$target_file = "../".$foto_profile.".".strtolower(array_pop($var)) ;
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
@@ -88,7 +85,6 @@ if ($uploadOk == 0) {
 } else {
     if (move_uploaded_file($file_tmp, $target_file)) {
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-        
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
@@ -96,13 +92,11 @@ if ($uploadOk == 0) {
 //uploaf foto
 
 
-
 if(! $retval ) {
-	die('Could not enter data: ' . mysql_error());
+die('Could not enter data: ' . mysql_error());
 }
-
 echo "Entered data successfully\n";
-header("location: /oilancer/index.php");
-//$this->redirect("http://localhost/oilancer/");
+header("location: /oilancer/admin/index.php?p=datafreelance");
+
 mysql_close($conn);
 ?>

@@ -21,6 +21,7 @@
     <script type="text/javascript" src="lib/slick/slick.min.js"></script>
     <script src="public/javascript/following-menu.js"></script>
     <script src="public/javascript/banner-carousel.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
 
 </head>
 
@@ -52,7 +53,8 @@
                 }
                 
             } else {
-                echo 'Halaman tidak ditemukan! :(';
+                //echo 'Halaman tidak ditemukan! :(';
+                include($pages_dir.'/'.'404'.'.php');
             }
         }
         else {

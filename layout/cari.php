@@ -11,7 +11,7 @@ if (!$conn) {
 }
 mysql_select_db('oilancer');
 
-
+//echo $_POST['cari'];
 ?>
 
 
@@ -52,8 +52,21 @@ mysql_select_db('oilancer');
                     <section class="ui padded segment square">
                         <div class="ui container">
                             <div class="ui fluid action input">
-                              <h4>Lowongan Pekerjaan</h4>
+                              <input type="text" placeholder="Search...">
+                              <button class="ui icon button">
+                                <i class="search icon"></i>
+                              </button>
                             </div>
+                            <br>
+                            <!-- <div class="field">
+                                <select class="ui fluid dropdown">
+                                  <option value="LT">Lowongan Terbaru</option>
+                                      <option value="BT">Bayaran Tertinggi</option>
+                                      <option value="AB">Akan Berahir</option>
+                                      
+                                </select>
+                              </div> -->
+
                         </div>
                     </section>
 
@@ -61,8 +74,9 @@ mysql_select_db('oilancer');
                     <div class="ui container">
                         <div class="ui divided items">
                             <?php
-
-                                $queri="Select * From pekerjaan  ";  //menampikan SEMUA data dari tabel siswa
+                                //echo $_POST['cari'];
+                                $cari = $_POST['cari'];
+                                $queri="Select * From pekerjaan where kategori = '$cari' OR judul = '$cari' OR Keterangan = '$cari' OR gaji = '$cari' OR link = '$cari'";  //menampikan SEMUA data dari tabel siswa
                                 $hasil=MySQL_query ($queri);    //fungsi untuk SQL
 
                                 // perintah untuk membaca dan mengambil data dalam bentuk array

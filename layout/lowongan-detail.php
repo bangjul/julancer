@@ -88,9 +88,9 @@
                                   $id_user_upload = $_POST['id_user'];
                                   //$id_userAktif=$_SESSION['id_user'];
                                   $queri="Select * From user where id=$id_user_upload" ;  //menampikan SEMUA data dari tabel siswa
-                                  $hasil=MySQL_query ($queri);    //fungsi untuk SQL
+                                  $hasil=mysql_query ($queri);    //fungsi untuk SQL
 
-                                  $row = MySQL_fetch_assoc($hasil);
+                                  $row = mysql_fetch_assoc($hasil);
                                   $nama_lengkap= $row['nama_lengkap'];
                                   $email= $row['email'];
                                   $nomor_telepon= $row['nomor_telepon'];

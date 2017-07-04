@@ -6,10 +6,7 @@
 }
 ?>
 
-<!-- <script type="text/javascript">
-    window.alert("<?=$_SESSION['rule']?>");
-</script> -->
-<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+
 <script type="text/javascript" src="js/header.js"></script>
              <div class="ui fixed borderless menu square">
                 <div class="ui container">
@@ -19,10 +16,12 @@
                     <div class="right item">
                         <div class="item">
                             <div class="ui input">
-                                <input type="text" placeholder="Apa yang anda cari ?">
-                                <button class="ui icon yellow button">
-                                    <i class="search icon"></i>
-                                </button>
+                                <form method="post" action="?p=cari">
+                                    <input type="text" placeholder="Apa yang anda cari ?" name="cari">
+                                    <button class="ui icon yellow button" type="submit">
+                                        <i class="search icon"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                                 <a class="item" href="?p=lowongan">
@@ -51,7 +50,7 @@
                                         </div>
                                     </div>
                                     <div class="item">
-                                        <a  href="?p=logout"><button class="hidden ui yellow button masuk" id="btnLogout" style="display: block;"><i class="grey sign in icon"></i>Logout</button></a>
+                                        <a  href="?p=logout"><button class="hidden ui yellow button masuk" id="btnLogoutHeader" style="display: block;"><i class="grey sign in icon"></i>Logout</button></a>
                                     </div>
                                     </a>
                                     <?php 
@@ -68,7 +67,7 @@
                                         </div>
                                     </div>
                                     <div class="item">
-                                        <a  href="?p=logout"><button class="hidden ui yellow button masuk" id="btnLogout" style="display: block;"><i class="grey sign in icon"></i>Logout</button></a>
+                                        <a  href="?p=logout"><button class="hidden ui yellow button masuk" id="btnLogoutHeader" style="display: block;"><i class="grey sign in icon"></i>Logout</button></a>
                                     </div>
                                     </a>
                                 <?php
@@ -89,11 +88,7 @@
                             }
                         ?>
                         
-                        <!-- <div class="item">
-                            <button class="ui basic yellow button daftar" id="btnLogoutHeader" style="display: none"><i class="grey add user icon"></i>Logout</button>
-                        </div>
-                         -->
-                        
+               
                         
                     </div>
                 </div>
