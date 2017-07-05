@@ -75,7 +75,7 @@ mysql_select_db('oilancer');
                         <div class="ui divided items">
                             <?php
 
-                                $queri="Select * From pekerjaan where kategori = 'Design dan Mutilmedia'";  //menampikan SEMUA data dari tabel siswa
+                                $queri="Select * From pekerjaan where kategori = 'Design dan Multimedia'";  //menampikan SEMUA data dari tabel siswa
                                 $hasil=MySQL_query ($queri);    //fungsi untuk SQL
 
                                 // perintah untuk membaca dan mengambil data dalam bentuk array

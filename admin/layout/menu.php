@@ -11,7 +11,11 @@
 			</div>	
 		</div>
 		<div class="item">
-		    <div class="ui input"><input type="text" placeholder="Search..."></div>
+		    <div class="ui icon input">
+		    <form method="post" action="?p=cari">
+		    	<input type="text" placeholder="Search..." name="cari">
+		    </form>
+		    </div>
 		</div>
 		  
 

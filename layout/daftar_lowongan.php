@@ -15,7 +15,6 @@ if (!$conn) {
 }
 
 
-
 $id_job = $_POST['id'];
 $id_user = $_SESSION['id_user'];
 

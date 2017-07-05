@@ -26,7 +26,7 @@
                         </div>
                                 <a class="item" href="?p=lowongan">
                                         <div class="content">
-                                            LOWONGAN KERJA
+                                            LOWONGAN KERJA / JOB
                                         </div>
                                 </a>
                         <?php

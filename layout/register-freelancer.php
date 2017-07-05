@@ -45,10 +45,7 @@
                             <br>
                             <div class="ui horizontal divider">Atau</div>
                                 <br>
-                                <button class="ui facebook button"><i class="facebook icon"></i>Daftar dengan Facebook</button>
-                                <button class="ui google plus button"><i class="google icon"></i>Daftar dengan Google</button>
-                                <br>
-                                <br>
+                                
                                 <p>Sudah punya akun? <a href="?p=login">Silahkan Login</a></p>
                                 <br>
 

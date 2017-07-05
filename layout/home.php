@@ -197,6 +197,15 @@ while(($row = mysql_fetch_array($query)) != null){
 }
 $count = count($data);
 
+//jumlah freelancer
+$sql3 = "SELECT * FROM user where rule = '3'";
+$query3 = mysql_query($sql3);
+$data3 = array();
+while(($row = mysql_fetch_array($query3)) != null){
+    $data3[] = $row;
+}
+$count3 = count($data3);
+
 //jumlah pekerjaan
 $sql2 = "SELECT * FROM pekerjaan";
 $query2 = mysql_query($sql2);
@@ -207,9 +216,13 @@ while(($row = mysql_fetch_array($query2)) != null){
 $count2 = count($data2);
 
 //total gaji
-$sql3 = "SELECT sum(gaji) FROM `pekerjaan` WHERE 1";
-
-//echo "Jumlah data dari array PHP: $count2";
+$sql4 = "SELECT * FROM pekerjaan";
+$query4 = mysql_query($sql4);
+$jumlah = 0;
+while ($data = mysql_fetch_array($query4)) {
+    $jumlah = $jumlah + $data['gaji'];
+}
+// echo $jumlah;
 
 ?>
     <div class="info-section">
@@ -235,7 +248,7 @@ $sql3 = "SELECT sum(gaji) FROM `pekerjaan` WHERE 1";
                             <div class="column">
                                 <div class="ui header">
                                     <i class="yellow dollar icon"></i>
-                                    <div class="content">$909.090
+                                    <div class="content"><?=$jumlah ?>
                                         <div class="sub header">Jumlah Job Keseluruhan
                                         </div>
                                     </div>
@@ -244,9 +257,19 @@ $sql3 = "SELECT sum(gaji) FROM `pekerjaan` WHERE 1";
 
                             <div class="column">
                                 <div class="ui header">
-                                    <i class="yellow user icon"></i>
+                                    <i class="yellow building icon"></i>
                                     <div class="content"><?php echo $count ?>
                                         <div class="sub header">Jumlah Perusahaan
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="column">
+                                <div class="ui header">
+                                    <i class="yellow spy icon"></i>
+                                    <div class="content"><?php echo $count3 ?>
+                                        <div class="sub header">Jumlah Freelancer
                                         </div>
                                     </div>
                                 </div>
